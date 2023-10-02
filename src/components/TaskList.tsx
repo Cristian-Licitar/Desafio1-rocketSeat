@@ -5,7 +5,7 @@ import '../styles/tasklist.scss'
 import { FiTrash, FiCheckSquare } from 'react-icons/fi'
 
 interface Task {
-  id: string;
+  id: number;
   title: string;
   isComplete: boolean;
 }
@@ -19,7 +19,7 @@ export function TaskList() {
    
       if(newTaskTitle.trim() !== ''){
         const newTask: Task = {
-          id: uuidv4(),
+          id: Math.floor(Math.random() * 100),//gera um número randômico entre 0 e 99
           title: newTaskTitle,
           isComplete: false
         }
@@ -33,7 +33,7 @@ export function TaskList() {
       console.log(tasks);
   }
 
-  function handleToggleTaskCompletion(id: string) {
+  function handleToggleTaskCompletion(id: number) {
     // Altere entre `true` ou `false` o campo `isComplete` de uma task com dado ID
 
     //primeiro eu percorro o arrray de tasks para achar o objeto que desejo atualizar
@@ -49,7 +49,7 @@ export function TaskList() {
     setTasks(updateTasksStatus);//Passo para o useState a lista atualizada
   }
 
-  function handleRemoveTask(id: string) {
+  function handleRemoveTask(id: number) {
     // Remova uma task da listagem pelo ID
     // Primeiro eu crio um objeto qualquer (deleteTask) que irá receber o valor retornado do metódo filter()
     setTasks((deleteTask) => deleteTask.filter(task => task.id !== id));
